@@ -1,0 +1,1 @@
+findHighestSalaryEmployee(employees, numEmployees)
