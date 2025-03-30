@@ -29,20 +29,17 @@ The expression is not balanced.
 int stack[MAX_SIZE];
 int top = -1;
 
-void push(char data) {
+void push(char data)
+{
     if (top == MAX_SIZE - 1)
     {
         printf("stack is overflown\n");
     }
-    char *ptr = data; //pointer to the beginning of the string
-    while (*ptr != '\0'  && *ptr !='\n')
-    {
-        stack[++top] = *ptr;
-        ptr++;
-    }
+    stack[++top] = data;
 }
 
-int pop() {
+int pop()
+{
     if (top == -1)
     {
         return 0;
@@ -50,15 +47,53 @@ int pop() {
     return stack[top--];
 }
 
-int balance(int top) {
-    if (stack[top] == ')' || stack[top] == '}' || stack[top] == ']')
-    return 0;
+int balance(char *data)
+{
+    for (int i = 0; data[i] != '\0' && data[i] != '\n'; i++)
+    {
+        char ch = data[i];
+
+        // push opening brackets onto the stack
+        if (ch == '(' || ch == '[' || ch == '{')
+        {
+            push(ch);
+        }
+
+        // if its a closing bracket, check for matching opening bracket
+        else if (ch == ')' || ch == '}' || ch == ']')
+        {
+            if (top == -1) // stack is empty
+            {            
+                return 0; // not balanced
+            }
+            char topchar = pop(); // retrieve the last opening bracket from the stack
+
+            // check if matching brackets
+            if ((ch == ')' && topchar != '(') ||
+                (ch == ']' && topchar != '[') ||
+                (ch == '}' && topchar != '{'))
+            {
+                return 0; // Not balanced
+            }
+        }
+    }
+
+    // if stack is empty at the end, expression is balanced
+    return (top == -1);
 }
 
-int main() {
+int main()
+{
     char data[MAX_SIZE];
     printf("Input an expression in parentheses  : ");
     fgets(data, MAX_SIZE, stdin);
-    printf("%s", data);
-    push(data);
+    if (balance(data))
+    {
+        printf("The expression is balanced.\n");
+    }
+    else
+    {
+        printf("The expression is not balanced.\n");
+    }
+    return 0;
 }
