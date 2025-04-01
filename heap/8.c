@@ -69,7 +69,7 @@ void next_greater(char *arr)
     {
         int found = 0;
 
-        for (int j = 1; arr[j] != '\0' && arr[j] !='\n'; j++)
+        for (int j = i + 1; arr[j] != '\0' && arr[j] !='\n'; j++)
         {
             if (arr[i] < arr[j])
             {
@@ -85,15 +85,15 @@ void next_greater(char *arr)
         }
         
     }
-    for (int i = 0; i<top; i++)
+    for (int i = 0; i<=top; i++)
     {
         if (stack[i] == -1)
         {
-            printf("%c --> -1 \n", arr[i]);
+            printf("%c --> -1\n", arr[i]);
         }
         else 
         {
-            printf("%c --> %c \n", arr[i], stack[i]);
+            printf("%c --> %c\n", arr[i], stack[i]);
         }
     }
     
@@ -105,11 +105,12 @@ int main()
     printf("insert numbers\n");
     fgets(arr, MAX_SIZE, stdin);
     printf("Elements in the array are: ");
-    for (int i = 0; arr[i] != '\0'; i++)
+    for (int i = 0; arr[i] != '\0' && arr[i] != '\n'; i++)
     {
         printf("%c ", arr[i]);
     }
     printf("\n");
     printf("The next larger elements are: \n");
     next_greater(arr);
+    return 0;
 }
