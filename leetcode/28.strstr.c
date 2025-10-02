@@ -29,14 +29,11 @@ int ft_strncmp(char *s1, char *s2, int n)
     i = 0;
     while (i < n && (s1[i] || s2[i]))
     {
-        if (s1[i] == s2[i])
-        {
-            i++;
-        }
-        else 
+        if (s1[i] != s2[i])
         {
             return s1[i] - s2[i];
         }
+      i++;
     }
     return 0;
 }
@@ -69,7 +66,7 @@ int main()
     char *haystack; 
     char *needle;
     
-    haystack = "abbbaaaaaaabbababbbbabababbbbbbbaaaaaaabbaaabbaababbbbababababaabbbbbbaaaaababbbbaaabababbbaaaabbbaabbbbbbabababbabaaaaabaabaaababbbaaabaababbaaabaaababbabbbbababaaaaaaababaabaabbaabbbaaabaaaaaa";
-    needle = "aabaaaabababbbabababbbaabaabaaaaabaabbbaabbbbba";
+    haystack = "aaaabbbaaaaaaabbababbbbabababbbbbbbaaaaaaabbaaabbaababbbbababababaabbbbbbaaaaababbbbaaabababbbaaaabbbaabbbbbbabababbabaaaaabaabaaababbbaaabaababbaaabaaababbabbbbababaaaaaaababaabaabbaabbbaaabaaaaaa";
+    needle = "abb";
     printf("%d ", strStr(haystack, needle));
 }
