@@ -1,18 +1,18 @@
 #include <stdlib.h>
 
-int count_words(const char *s, char c)
+int count_words(const char *s, char *c)
 {
     int count = 0;
     int in_word = 0;
 
     while (*s)
     {
-        if (*s != c && !in_word)
+        if (*s != *c && !in_word)
         {
             in_word = 1;
             count++;
         }
-        else if (*s == c)
+        else if (*s == *c)
         {
             in_word = 0;
         }
@@ -21,10 +21,21 @@ int count_words(const char *s, char c)
     return count;
 }
 
-int word_length(char *s, char c)
+int in_sep(char *s, char *c)
+{
+    int in_sep = 0;
+    while (*s && *s == *c)
+    {
+        in_sep = 1;
+        s++;
+        
+    }
+}
+
+int word_length(char *s, char *c)
 {
     int length = 0;
-    while(*s && *s !=c)
+    while (*s && *s != *c)
     {
         length++;
         s++;
@@ -32,7 +43,7 @@ int word_length(char *s, char c)
     return length;
 }
 
-char **split(char *s, char c)
+char **split(char *s, char *c)
 {
     if (!s)
     {
@@ -49,7 +60,7 @@ char **split(char *s, char c)
     int i = 0;
     while (*s)
     {
-        if (*s != c)
+        if (*s != *c)
         {
             int len = word_length(s, c);
             result[i] = (char *)malloc((len + 1) * sizeof(char));
