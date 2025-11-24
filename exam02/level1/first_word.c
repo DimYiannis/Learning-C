@@ -1,4 +1,5 @@
-/*Assignment name  : first_word
+/*
+Assignment name  : first_word
 Expected files   : first_word.c
 Allowed functions: write
 --------------------------------------------------------------------------------
@@ -30,7 +31,7 @@ $>*/
 
 int main(int ac, char *av[])
 {
-    if (argc == 2)
+    if (ac == 2)
     {
         unsigned int i;
         
@@ -43,4 +44,3 @@ int main(int ac, char *av[])
     write(1, "\n", 1);
     return (0);
 }
-
